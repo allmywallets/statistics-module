@@ -69,10 +69,8 @@
           tooltips: {
             callbacks: {
               label: (tooltipItem, data) => {
-                return `
-                  ${data['labels'][tooltipItem['index']]}:
-                  ${precisionRound(data['datasets'][0]['data'][tooltipItem['index']], 4)} ${this.currencies.primary}
-                `
+                return data['labels'][tooltipItem['index']] + ':' +
+                  precisionRound(data['datasets'][0]['data'][tooltipItem['index']], 4) + this.currencies.primary
               }
             }
           }

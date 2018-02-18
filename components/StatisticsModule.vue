@@ -7,7 +7,7 @@
     <div class="stats-card">
       <h3>Holdings distribution</h3>
       <p>
-        These are your current holdings, based on their current values in {{ currency }}.
+        These are your current holdings, based on their current values in $.
       </p>
       <pie-chart :options="holdingsPieOptions" :chart-data="holdingsPieData" />
     </div>

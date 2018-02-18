@@ -13,7 +13,7 @@ class StatisticsModule extends Module {
         icon: 'chart-pie',
         menu: true,
         router: {
-          name: 'statistics',
+          name: 'page',
           path: '/',
           component: Statistics
         }

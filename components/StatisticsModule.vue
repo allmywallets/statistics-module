@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2>Statistics</h2>
-    <p>
+    <h2 v-translate>Statistics</h2>
+    <p v-translate>
       You can use this page to get some statistics about your current holdings.
     </p>
-    <div class="stats-card">
-      <h3>Holdings distribution</h3>
-      <p>
-        These are your current holdings, based on their current values in $.
+    <div class="card stats-card">
+      <h3 v-translate>Holdings distribution</h3>
+      <p v-translate="{ currency: currencies.primary }">
+        These are your current holdings, based on their current values in %{currency}.
       </p>
       <pie-chart :options="holdingsPieOptions" :chart-data="holdingsPieData" />
     </div>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import PieChart from './PieChart.vue'
 
   export default {
@@ -23,11 +24,23 @@
       PieChart
     },
     computed: {
+      ...mapGetters([
+        'balances',
+        'holdingsHistories',
+        'currencies'
+      ]),
       holdingsPieData () {
+        const holdingsKeys = Object.keys(this.holdingsHistories).sort((key1, key2) => {
+          const key1Value = this.holdingsHistories[key1].primary[this.holdingsHistories[key1].primary.length - 1]
+          const key2Value = this.holdingsHistories[key2].primary[this.holdingsHistories[key2].primary.length - 1]
+
+          return key1Value < key2Value
+        })
+
         return {
-          labels: ['Test1', 'Test2', 'Test3', 'Test4', 'Test5', 'Test6'],
+          labels: holdingsKeys,
           datasets: [{
-            data: [100, 200, 300, 10, 20, 30],
+            data: holdingsKeys.map(key => this.holdingsHistories[key].primary[this.holdingsHistories[key].primary.length - 1]),
             backgroundColor: [
               '#1f77b4',
               '#ff7f0e',
@@ -44,9 +57,25 @@
         }
       },
       holdingsPieOptions () {
+        const precisionRound = (number, precision) => {
+          const factor = Math.pow(10, precision)
+
+          return Math.round(number * factor) / factor
+        }
+
         return {
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          tooltips: {
+            callbacks: {
+              label: (tooltipItem, data) => {
+                return `
+                  ${data['labels'][tooltipItem['index']]}:
+                  ${precisionRound(data['datasets'][0]['data'][tooltipItem['index']], 4)} ${this.currencies.primary}
+                `
+              }
+            }
+          }
         }
       }
     }

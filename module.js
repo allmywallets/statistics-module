@@ -39,6 +39,10 @@ class StatisticsModule extends Module {
   compatibility () {
     return '>= 0.0.1'
   }
+
+  translations () {
+    return require('./translations/translations.json')
+  }
 }
 
 export const instance = new StatisticsModule()

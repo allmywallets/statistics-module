@@ -14,7 +14,7 @@ class StatisticsModule extends Module {
         menu: true,
         router: {
           name: 'statistics',
-          path: '/stats',
+          path: '/',
           component: Statistics
         }
       }

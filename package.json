@@ -1,0 +1,16 @@
+{
+  "name": "@allmywallets/specification",
+  "description": "AllMyWallets official statistics module",
+  "repository": "https://github.com/allmywallets/specification",
+  "author": "Quentin de Longraye",
+  "license": "MIT",
+  "dependencies": {
+    "@allmywallets/specification": "git+https://github.com/allmywallets/specification.git",
+    "chart.js": "^2.7.1",
+    "vue-chartjs": "^3.2.1",
+    "vuex": "^3.0.1"
+  },
+  "scripts": {
+    "start": "module-build"
+  }
+}

@@ -18,7 +18,7 @@
   import PieChart from './PieChart.vue'
 
   export default {
-    name: 'page-statistics',
+    name: 'statistics-module',
     components: {
       PieChart
     },

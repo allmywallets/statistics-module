@@ -1,4 +1,4 @@
-import Module from '@allmywallets/specification/src/module'
+import { Module } from '@allmywallets/specification'
 import Statistics from './components/StatisticsModule.vue'
 
 class StatisticsModule extends Module {

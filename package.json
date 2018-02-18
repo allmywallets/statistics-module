@@ -5,7 +5,7 @@
   "author": "Quentin de Longraye",
   "license": "MIT",
   "dependencies": {
-    "@allmywallets/specification": "^0.0.1",
+    "@allmywallets/specification": "^0.0.2",
     "chart.js": "^2.7.1",
     "vue-chartjs": "^3.2.1",
     "vuex": "^3.0.1"
